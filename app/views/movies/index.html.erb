@@ -11,5 +11,9 @@
         <%= truncate(movie.description, length: 150, separator: ' ') %>
       </p>
     </div>
+
+    <div>
+      <%= link_to "Add New Movie", new_movie_path, class:"button" %>
+    </div>
   </section>
 <% end %>

@@ -10,16 +10,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <header>
-    <nav>
-      <%= link_to(image_tag("logo.png"), root_path) %>
-      <ul>
-        <li>
-          <%= link_to("All Movies", movies_path) %>
-        </li>
-      </ul>
-    </nav>
-  </header>
+  <%= render "layouts/header" %>
 
   <div class="content">
     <body>
@@ -27,8 +18,5 @@
     </body>
   </div>
 
-  <footer>
-    <%= Time.now.year %>
-  </footer>
-
+ <%= render "layouts/footer" %>
 </html>
