@@ -1,5 +1,8 @@
 <% @movies.each do |movie| %>
   <section class="movie">
+    <div class="image">
+      <%= image_tag movie.image_file_name %>
+    </div>
     <div class="summary">
       <h2>
         <%= link_to(movie.title, movie) %>
@@ -11,9 +14,9 @@
         <%= truncate(movie.description, length: 150, separator: ' ') %>
       </p>
     </div>
-
-    <div>
-      <%= link_to "Add New Movie", new_movie_path, class:"button" %>
-    </div>
   </section>
 <% end %>
+
+<div>
+  <%= link_to "Add New Movie", new_movie_path, class:"button" %>
+</div>
