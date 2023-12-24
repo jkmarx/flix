@@ -14,5 +14,9 @@
       </tr>
     </table>
   </div>
-  <%= link_to "Edit Movie", edit_movie_path, class:"button" %>
+  <section class="admin">
+    <%= link_to "Edit", edit_movie_path(@movie), class: "button" %>
+    <%= link_to "Delete", movie_path(@movie), class: "button",
+        data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }%>
+  </section>
 </section>

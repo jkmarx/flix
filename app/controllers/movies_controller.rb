@@ -1,6 +1,12 @@
 class MoviesController < ApplicationController
   def index
-    @movies =  Movie.all
+    @movies =  Movie.released()
+  end
+
+  def destroy
+    @movie = Movie.find(params[:id]) # unnecessary to use instance but for consistency
+    @movie.destroy
+    redirect_to movies_url, status: :see_other
   end
 
   def edit
