@@ -14,6 +14,9 @@ class Movie < ApplicationRecord
     message: "must be a JPG or PNG image"
   }
 
+  def average_stars
+    reviews.average(:stars) || 0.0
+  end
   def self.released
     where("released_on < ?", Time.now).order("released_on desc")
   end
@@ -30,6 +33,12 @@ class Movie < ApplicationRecord
     order("created_at desc").limit(3)
   end
   def flop?()
-    total_gross.blank? || total_gross < 225_000_000
+    unless (reviews.count > 50 && average_stars >= 4)
+      (total_gross.blank? || total_gross < 225_000_000)
+    end
+  end
+
+  def average_stars_as_percent
+    (self.average_stars / 5.0) * 100
   end
 end
