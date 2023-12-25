@@ -3,6 +3,15 @@ class MoviesController < ApplicationController
     @movies =  Movie.released()
   end
 
+  def create
+    @movie = Movie.create(movie_params)
+    if @movie.save
+      redirect_to @movie, notice: "Movie successfully created!"
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @movie = Movie.find(params[:id]) # unnecessary to use instance but for consistency
     @movie.destroy
@@ -11,15 +20,6 @@ class MoviesController < ApplicationController
 
   def edit
     @movie = Movie.find(params[:id])
-  end
-
-  def create
-    @movie = Movie.create(movie_params)
-    if @movie.save
-      redirect_to @movie, notice: "Movie successfully created!"
-    else
-      render :new, status: :unprocessable_entity
-    end
   end
 
   def new
