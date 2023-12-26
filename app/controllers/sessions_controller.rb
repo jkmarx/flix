@@ -3,7 +3,15 @@ class SessionsController < ApplicationController
   end
 
   def create
-    fail
+    user = User.find_by(email: params[:email_or_username]) ||
+      User.find_by(username: params[:email_or_username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect_to user, notice: "Welcome back, #{user.name}!"
+    else
+      flash[:alert] = "Invalid email/password combo!"
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
