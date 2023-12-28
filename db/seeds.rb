@@ -174,6 +174,12 @@ Movie.create!([
                 }
               ])
 
+generes = ["Action","Comedy","Drama","Romance","Thriller",G"Fantasy","Documentary","Adventure","Animation","Sci-Fi"]
+
+generes.each do |genre|
+  Genre.create(name:genre)
+end
+
 
 
 
